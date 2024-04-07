@@ -8,3 +8,8 @@ class NewMessageReceiveEvent(BaseEvent):
     message_text: str
     message_oid: str
     chat_oid: str
+
+@dataclass
+class NewChatCreate(BaseEvent):
+    chat_oid: str
+    chat_title: str

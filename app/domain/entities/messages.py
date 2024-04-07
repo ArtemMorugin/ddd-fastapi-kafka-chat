@@ -3,7 +3,7 @@ from datetime import datetime
 from uuid import uuid4
 
 from domain.entities.base import BaseEntity
-from domain.events.messages import NewMessageReceiveEvent
+from domain.events.messages import NewMessageReceiveEvent, NewChatCreate
 from domain.values.messages import Text, Title
 
 
@@ -37,3 +37,9 @@ class Chat(BaseEntity):
             message_oid=message.oid,
         ))
 
+    @classmethod
+    def create_chat(cls, title: Title) -> 'Chat':
+        new_chat = cls(title=title)
+        new_chat.register_event(NewChatCreate(chat_oid=new_chat.oid, chat_title=new_chat.title.as_generic_type()))
+
+        return new_chat

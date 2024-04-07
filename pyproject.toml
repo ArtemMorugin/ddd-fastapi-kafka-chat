@@ -13,6 +13,7 @@ uvicorn = "^0.29.0"
 ipython = "^8.22.2"
 pytest = "^8.1.1"
 faker = "^24.4.0"
+pytest-asyncio = "^0.23.6"
 
 
 [build-system]
