@@ -16,7 +16,6 @@ def app() -> FastAPI:
     return app
 
 
-
 @pytest.fixture
 def client(app: FastAPI) -> TestClient:
     return TestClient(app=app)
