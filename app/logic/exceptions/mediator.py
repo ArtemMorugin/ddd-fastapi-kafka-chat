@@ -4,7 +4,7 @@ from logic.exceptions.base import LogicException
 
 
 @dataclass(eq=False)
-class EventHandlersNotRegistered(LogicException):
+class EventHandlersNotRegisteredException(LogicException):
     event_type: type
 
     @property
@@ -13,7 +13,7 @@ class EventHandlersNotRegistered(LogicException):
 
 
 @dataclass(eq=False)
-class CommandHandlersNotRegistered(LogicException):
+class CommandHandlersNotRegisteredException(LogicException):
     command_type: type
 
     @property
