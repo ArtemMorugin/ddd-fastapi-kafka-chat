@@ -5,7 +5,7 @@ from domain.events.base import BaseEvent
 
 
 @dataclass
-class NewMessageReceiveEvent(BaseEvent):
+class NewMessageReceivedEvent(BaseEvent):
     event_title: ClassVar[str] = 'New Message Receive'
 
     message_text: str
