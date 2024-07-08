@@ -4,7 +4,7 @@ from uuid import uuid4
 import pytest
 
 from domain.entities.messages import Chat, Message
-from domain.events.messages import NewMessageReceiveEvent
+from domain.events.messages import NewMessageReceivedEvent
 from domain.exceptions.messages import TitleTooLongException
 from domain.values.messages import Text, Title
 
@@ -67,7 +67,7 @@ def test_new_message_events():
 
     new_event = events[0]
 
-    assert isinstance(new_event, NewMessageReceiveEvent), new_event
+    assert isinstance(new_event, NewMessageReceivedEvent), new_event
     assert new_event.message_oid == message.oid
     assert new_event.message_text == message.text.as_generic_type()
     assert new_event.chat_oid == chat.oid

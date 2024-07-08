@@ -1,4 +1,4 @@
-from functools import lru_cache
+from functools import lru_cache, partial
 
 from aiokafka import AIOKafkaConsumer, AIOKafkaProducer
 from punq import Container, Scope
@@ -63,7 +63,10 @@ def _init_container() -> Container:
     container.register(GetMessagesQueryHandler)
 
     def create_message_broker() -> BaseMessageBroker:
-        return KafkaMessageBroker(producer=AIOKafkaProducer(bootstrap_servers=config.kafka_url))
+        return KafkaMessageBroker(
+            producer=AIOKafkaProducer(bootstrap_servers=config.kafka_url),
+            consumer=AIOKafkaConsumer(bootstrap_servers=config.kafka_url, group_id='chat')
+        )
 
     # Message Broker
     container.register(BaseMessageBroker, factory=create_message_broker, scope=Scope.singleton)
